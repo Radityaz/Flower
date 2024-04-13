@@ -1,0 +1,204 @@
+[gd_scene load_steps=10 format=3 uid="uid://i4h8fwcs6le8"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_3oygg"]
+[ext_resource type="FontFile" uid="uid://cg7gb2fs8e1k4" path="res://font/Nunito-Bold.ttf" id="2_l8lxi"]
+[ext_resource type="Theme" uid="uid://dasf13mv32xp4" path="res://theme/primary.tres" id="2_mwx27"]
+[ext_resource type="Script" path="res://BubbleDisplay.gd" id="3_0cdla"]
+[ext_resource type="Texture2D" uid="uid://dmwdu77ceyrmq" path="res://img/BubbleLD.png" id="4_vgq3g"]
+[ext_resource type="Texture2D" uid="uid://b82og2ex60df5" path="res://img/DaisyLD.png" id="5_r6qni"]
+[ext_resource type="Theme" uid="uid://b5cxbtd3b2nby" path="res://theme/upgradeprimary.tres" id="7_qkqm3"]
+[ext_resource type="Script" path="res://ShopDisplay.gd" id="7_tk4fw"]
+[ext_resource type="FontFile" uid="uid://bcvxroda1jure" path="res://font/Nunito-Regular.ttf" id="8_w4u8n"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3oygg")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("2_mwx27")
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="BubbleDisplay" type="Label" parent="MarginContainer/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_l8lxi")
+theme_override_font_sizes/font_size = 20
+text = "Bubble"
+script = ExtResource("3_0cdla")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Panel/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_vgq3g")
+expand_mode = 3
+
+[node name="HomeDisplay" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/HomeDisplay"]
+layout_mode = 2
+
+[node name="MainBubble" type="Button" parent="MarginContainer/VBoxContainer/HomeDisplay/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.5
+offset_top = -136.0
+offset_right = 134.5
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("5_r6qni")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="ShopDisplay" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("7_tk4fw")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShopDisplay"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GoodQualityWater" type="Panel" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme = ExtResource("7_qkqm3")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -5
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_l8lxi")
+theme_override_font_sizes/font_size = 15
+text = "Good Quality Water"
+
+[node name="Upgrade1Buff" type="Label" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_w4u8n")
+theme_override_font_sizes/font_size = 14
+text = "00 > 00"
+
+[node name="Upgrade1Cost" type="Button" parent="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_qkqm3")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_l8lxi")
+theme_override_font_sizes/font_size = 16
+text = "0000"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 5
+metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_mwx27")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_l8lxi")
+theme_override_font_sizes/font_size = 20
+text = "HOME"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_mwx27")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_l8lxi")
+theme_override_font_sizes/font_size = 20
+text = "SHOP
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HomeDisplay/Panel/MainBubble" to="." method="_on_main_bubble_pressed"]
