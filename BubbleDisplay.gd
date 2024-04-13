@@ -7,6 +7,6 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	self.text = str(Game.convert(floor(Game.bubble)))
+func _process(_delta):
+	self.text = str(Game.convertnumber(floor(Game.bubble)))
 

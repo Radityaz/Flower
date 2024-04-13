@@ -12,10 +12,10 @@ extends ScrollContainer
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	
-	FlowerCost1.text = str(Game.convert(floor(Game.flower1[2])))
-	FlowerCost2.text = str(Game.convert(floor(Game.flower2[2])))
+	FlowerCost1.text = str(Game.convertnumber(floor(Game.flower1[2])))
+	FlowerCost2.text = str(Game.convertnumber(floor(Game.flower2[2])))
 	
 	FlowerStep1.value = Game.flower1[5]
 	FlowerStep2.value = Game.flower2[5]

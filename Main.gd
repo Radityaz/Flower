@@ -7,7 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_main_bubble_pressed():
@@ -20,7 +20,6 @@ func _on_home_button_pressed():
 	$MarginContainer/VBoxContainer/ShopDisplay.visible = false
 	$MarginContainer/VBoxContainer/FlowerDisplay.visible = false
 
-	$
 	
 
 
@@ -39,3 +38,11 @@ func _on_shop_button_2_pressed():
 	$MarginContainer/VBoxContainer/HomeDisplay.visible = false
 	$MarginContainer/VBoxContainer/ShopDisplay.visible = false
 	$MarginContainer/VBoxContainer/FlowerDisplay.visible = true
+
+
+func _on_costume_button_pressed():
+	$CostumizeDisplay.visible = true
+
+
+func _on_button_pressed():
+	$CostumizeDisplay.visible = false

@@ -8,13 +8,12 @@ extends ScrollContainer
 @onready var BetterSpotLightBuff = $MarginContainer/VBoxContainer/BetterSpotLight/MarginContainer/HBoxContainer/VBoxContainer/Upgrade2Buff
 @onready var BetterSpotlightCost = $MarginContainer/VBoxContainer/BetterSpotLight/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2Cost/HBoxContainer/Upgrade2Label
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	if (Game.flower1[0] > 0):
 		GoodWater.visible = true
@@ -26,9 +25,9 @@ func _process(delta):
 		
 	
 	GoodWaterBuff.text = str(Game.upgrade1[1]) + " Bubble per tap"
-	GoodWaterCost.text = str(Game.convert(floor(Game.upgrade1[2])))
+	GoodWaterCost.text = str(Game.convertnumber(floor(Game.upgrade1[2])))
 	BetterSpotLightBuff.text = str(Game.upgrade2[1]) + " Bubble per second"
-	BetterSpotlightCost.text = str(Game.convert(floor(Game.upgrade2[2])))
+	BetterSpotlightCost.text = str(Game.convertnumber(floor(Game.upgrade2[2])))
 	
 	if (Game.bubble >= Game.upgrade1[2]):
 		GoodWaterBuff.text = str(Game.upgrade1[1]) + " > " + str(Game.upgrade1[1] + Game.upgrade1[3] ) + " Bubble per tap" 

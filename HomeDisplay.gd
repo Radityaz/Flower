@@ -7,13 +7,14 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if (Game.flower1[0] > 0):
 		$Panel/MainBubble.visible = true
-	else:
-		$Panel/MainBubble.visible = false
-	
-	if (Game.flower2[0] > 0):
 		$HBoxContainer/MarginContainer/CostumeButton.visible = true
 	else:
+		$Panel/MainBubble.visible = false
 		$HBoxContainer/MarginContainer/CostumeButton.visible = false
+	
+	
+	$Panel/MainBubble.icon = load(Game.themepath[Game.currentselecttheme])
+

@@ -11,9 +11,16 @@ var upgrade2 = [0,0,100,2]
 var flower1 = [0,0,100,0.50,180,0]
 var flower2 = [0,0,2000,2,150,0]
 
+# [Daisy,Rose]
+var currentselecttheme = 0
+var themepath = ["res://img/DaisyLD.png","res://img/RoseLD.png"]
 
 
-func convert(number):
+
+func changetheme(index):
+	currentselecttheme = index;
+
+func convertnumber(number):
 	var result = number
 	
 	if result >= 1000000:
@@ -23,5 +30,5 @@ func convert(number):
 	else:
 		return result
 
-func _process(delta):
+func _process(_delta):
 	BPS = upgrade2[1]

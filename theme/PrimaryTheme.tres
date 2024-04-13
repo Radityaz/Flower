@@ -1,4 +1,24 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dhlqj7k3jncal"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dhlqj7k3jncal"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_477yr"]
+bg_color = Color(1, 0.933333, 0.952941, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(1, 0.901961, 0.92549, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqejg"]
+bg_color = Color(1, 0.933333, 0.952941, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(1, 0.901961, 0.92549, 1)
+shadow_size = 1
+shadow_offset = Vector2(0, 6)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgpl6"]
 bg_color = Color(1, 0.933333, 0.952941, 1)
@@ -11,4 +31,6 @@ shadow_size = 1
 shadow_offset = Vector2(0, 6)
 
 [resource]
+Button/styles/hover = SubResource("StyleBoxFlat_477yr")
+Button/styles/normal = SubResource("StyleBoxFlat_wqejg")
 Panel/styles/panel = SubResource("StyleBoxFlat_hgpl6")
