@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://i4h8fwcs6le8"]
+[gd_scene load_steps=29 format=3 uid="uid://i4h8fwcs6le8"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_3oygg"]
 [ext_resource type="FontFile" uid="uid://cg7gb2fs8e1k4" path="res://font/Nunito-Bold.ttf" id="2_l8lxi"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://4dk2kdu8rgjt" path="res://img/ShopIcon.png" id="12_7aqo4"]
 [ext_resource type="Script" path="res://FlowerDisplay.gd" id="12_nig4e"]
 [ext_resource type="Texture2D" uid="uid://dtc4v54t40ayv" path="res://img/RoseLD.png" id="14_wy1vu"]
+[ext_resource type="Texture2D" uid="uid://3kkqqspoer0g" path="res://img/TulipLD.png" id="16_ao2nx"]
 [ext_resource type="Script" path="res://CostumizeDisplay.gd" id="19_4mdid"]
 [ext_resource type="Theme" uid="uid://bc5p62473ojpv" path="res://theme/BlankTheme.tres" id="19_bou3y"]
 [ext_resource type="Texture2D" uid="uid://cd3ilwhlx0gvh" path="res://img/CrossRedIcon.png" id="20_kvv28"]
@@ -654,7 +655,127 @@ offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("8_r8550")
-max_value = 150.0
+max_value = 240.0
+step = 1.0
+show_percentage = false
+
+[node name="TulipFlower" type="Panel" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 65)
+layout_mode = 2
+theme = ExtResource("2_tityo")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_tityo")
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("8_r8550")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(55, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("16_ao2nx")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996078, 0.321569, 0.482353, 1)
+theme_override_colors/font_outline_color = Color(0.996094, 0.320313, 0.480469, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_l8lxi")
+theme_override_font_sizes/font_size = 15
+text = "Tulip Flower"
+vertical_alignment = 1
+
+[node name="FlowerBuff3" type="Label" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.576471, 0.678431, 1)
+theme_override_colors/font_outline_color = Color(1, 0.576471, 0.678431, 1)
+theme_override_fonts/font = ExtResource("8_w4u8n")
+theme_override_font_sizes/font_size = 12
+text = "00 > 00"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="Upgrade3" type="Button" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.992157, 0.352941, 0.501961, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.576471, 0.678431, 1)
+theme_override_colors/font_hover_color = Color(1, 0.576471, 0.678431, 1)
+theme_override_colors/font_focus_color = Color(1, 0.576471, 0.678431, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.576471, 0.678431, 1)
+theme_override_colors/font_outline_color = Color(1, 0.576471, 0.678431, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("2_l8lxi")
+theme_override_font_sizes/font_size = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 17
+theme_override_constants/margin_bottom = 17
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_83ilk")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="FlowerLabel3" type="Label" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.996078, 0.321569, 0.482353, 1)
+theme_override_colors/font_outline_color = Color(0.996078, 0.321569, 0.482353, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 12
+text = "1234"
+vertical_alignment = 1
+
+[node name="FlowerGenerate3" type="ProgressBar" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("8_r8550")
+max_value = 300.0
 step = 1.0
 show_percentage = false
 
@@ -748,7 +869,6 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="CostumizeDisplay" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -914,6 +1034,30 @@ texture = ExtResource("14_wy1vu")
 expand_mode = 2
 stretch_mode = 5
 
+[node name="TulipTheme" type="Button" parent="CostumizeDisplay/MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(68, 68)
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("2_tityo")
+
+[node name="MarginContainer" type="MarginContainer" parent="CostumizeDisplay/MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/TulipTheme"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="CostumizeDisplay/MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/TulipTheme/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("16_ao2nx")
+expand_mode = 2
+stretch_mode = 5
+
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
@@ -923,10 +1067,12 @@ autostart = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/BetterSpotLight/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2Cost" to="MarginContainer/VBoxContainer/ShopDisplay" method="_on_upgrade_2_cost_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_1_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_2_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_3_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomNavigation/HBoxContainer/ShopButton2" to="." method="_on_shop_button_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomNavigation/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomNavigation/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="CostumizeDisplay/MarginContainer/Panel/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CostumizeDisplay/MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/DaisyTheme" to="CostumizeDisplay" method="_on_daisy_theme_pressed"]
 [connection signal="pressed" from="CostumizeDisplay/MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/RoseTheme" to="CostumizeDisplay" method="_on_rose_theme_pressed"]
+[connection signal="pressed" from="CostumizeDisplay/MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/TulipTheme" to="CostumizeDisplay" method="_on_tulip_theme_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

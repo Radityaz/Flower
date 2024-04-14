@@ -1,19 +1,22 @@
 extends Node
 
-var bubble = 100;
+var bubble = 1000000;
 var BPS = 0;
+var click = 0;
 
 #[Level,Buff,Cost,Potential]
 var upgrade1 = [1,1,25,1]
 var upgrade2 = [0,0,100,2]
 
 #[Level,Buff,Cost,Potential,Range,step]
-var flower1 = [0,0,100,0.50,180,0]
-var flower2 = [0,0,2000,2,150,0]
+var flower1 = [0,0,100,1,180,0]
+var flower2 = [0,0,2000,5,240,0]
+var flower3 = [0,0,15000,10,300,0]
+
 
 # [Daisy,Rose]
 var currentselecttheme = 0
-var themepath = ["res://img/DaisyLD.png","res://img/RoseLD.png"]
+var themepath = ["res://img/DaisyLD.png","res://img/RoseLD.png","res://img/TulipLD.png"]
 
 
 
@@ -32,3 +35,4 @@ func convertnumber(number):
 
 func _process(_delta):
 	BPS = upgrade2[1]
+	click = upgrade1[1]

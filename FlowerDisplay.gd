@@ -1,12 +1,17 @@
 extends ScrollContainer
 
-@onready var FlowerBuff1 = $MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/VBoxContainer/FlowerBuff1
-@onready var FlowerCost1 = $MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1/HBoxContainer/FlowerLabel1
-@onready var FlowerStep1 = $MarginContainer/VBoxContainer/DaisyFlower/FlowerGenerate1
+# [Daisy,Rose]
+@onready var FlowerBuff = ["MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/VBoxContainer/FlowerBuff1",
+							"MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/VBoxContainer/FlowerBuff2", 
+							"MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/VBoxContainer/FlowerBuff3"]
 
-@onready var FlowerBuff2 = $MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/VBoxContainer/FlowerBuff2
-@onready var FlowerCost2 = $MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2/HBoxContainer/FlowerLabel2
-@onready var FlowerStep2 = $MarginContainer/VBoxContainer/RoseFlower/FlowerGenerate2
+@onready var FlowerCost = ["MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1/HBoxContainer/FlowerLabel1",
+							"MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2/HBoxContainer/FlowerLabel2",
+							"MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3/HBoxContainer/FlowerLabel3"]
+
+@onready var FlowerStep = ["MarginContainer/VBoxContainer/DaisyFlower/FlowerGenerate1",
+							"MarginContainer/VBoxContainer/RoseFlower/FlowerGenerate2",
+							"MarginContainer/VBoxContainer/TulipFlower/FlowerGenerate3"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,31 +19,29 @@ func _ready():
 
 func _process(_delta):
 	
-	FlowerCost1.text = str(Game.convertnumber(floor(Game.flower1[2])))
-	FlowerCost2.text = str(Game.convertnumber(floor(Game.flower2[2])))
-	
-	FlowerStep1.value = Game.flower1[5]
-	FlowerStep2.value = Game.flower2[5]
-	
-	FlowerStep1.max_value = Game.flower1[4]
-	FlowerStep2.max_value = Game.flower2[4]
+	for i in range(FlowerBuff.size()):
+		get_node(FlowerCost[i]).text = str(Game.convertnumber(floor(Game["flower" + str(i + 1)][2])))
+		get_node(FlowerStep[i]).value = Game["flower" + str(i + 1)][5]
+		get_node(FlowerStep[i]).max_value = Game["flower" + str(i + 1)][4]
+
+		if (Game["flower" + str(i + 1)][0] > 0):
+			Game["flower" + str(i + 1)][5] += 1
 	
 	
 	if (Game.bubble > Game.flower1[2]):
-		FlowerBuff1.text = str(Game.flower1[1]) + " > " + str(Game.flower1[1] + Game.flower1[3]) + " x Bubble per click" 
+		get_node(FlowerBuff[0]).text = str(Game.flower1[1]) + " > " + str(Game.flower1[1] + Game.flower1[3]) + " x Bubble per click" 
 	else:
-		FlowerBuff1.text = str(Game.flower1[1]) + "x Bubble per click"
+		get_node(FlowerBuff[0]).text = str(Game.flower1[1]) + "x Bubble per click"
 		
 	if (Game.bubble > Game.flower2[2]):
-		FlowerBuff2.text = str(Game.flower2[1]) + " > " + str(Game.flower2[1] + Game.flower2[3]) + " x Bubble per second" 
+		get_node(FlowerBuff[1]).text = str(Game.flower2[1]) + " > " + str(Game.flower2[1] + Game.flower2[3]) + " x Bubble per second" 
 	else:
-		FlowerBuff2.text = str(Game.flower2[1]) + "x Bubble per second"
-	
-	if (Game.flower1[0] > 0):
-		Game.flower1[5] += 1
-	
-	if (Game.flower2[0] > 0):
-		Game.flower2[5] += 1
+		get_node(FlowerBuff[1]).text = str(Game.flower2[1]) + "x Bubble per second"
+
+	if (Game.bubble > Game.flower3[2]):
+		get_node(FlowerBuff[2]).text = str(Game.flower3[1]) + " > " + str(Game.flower3[1] + Game.flower3[3]) + " x all upgrades" 
+	else:
+		get_node(FlowerBuff[2]).text = str(Game.flower3[1]) + "x all upgrades"
 	
 	
 	if (Game.flower1[5] >= Game.flower1[4]):
@@ -48,11 +51,20 @@ func _process(_delta):
 	if (Game.flower2[5] >= Game.flower2[4]):
 		Game.bubble += Game.flower2[1] * Game.BPS
 		Game.flower2[5] = 0
+
+	if (Game.flower3[5] >= Game.flower3[4]):
+		Game.bubble += Game.flower3[1] * (Game.BPS + Game.click)
+		Game.flower3[5] = 0
 	
 	if (Game.flower1[0] > 0):
 		$MarginContainer/VBoxContainer/RoseFlower.visible = true
 	else:
 		$MarginContainer/VBoxContainer/RoseFlower.visible = false
+
+	if (Game.flower2[0] > 0):
+		$MarginContainer/VBoxContainer/TulipFlower.visible = true
+	else:
+		$MarginContainer/VBoxContainer/TulipFlower.visible = false
 		
 
 
@@ -78,7 +90,12 @@ func upgrade(UpgradeIndex):
 		
 		if (UpgradeIndex[0] == 1 && UpgradeIndex == Game.flower2):
 			UpgradeIndex[1] += 25
+		
+		if (UpgradeIndex[0] == 1 && UpgradeIndex == Game.flower3):
+			UpgradeIndex[1] += 50
 	
 
 
+func _on_upgrade_3_pressed():
+		upgrade(Game.flower3)
 

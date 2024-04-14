@@ -3,6 +3,8 @@ extends Panel
 @onready var Unselected = load("res://theme/PrimaryTheme.tres")
 @onready var Selected = load("res://theme/SecondaryTheme.tres")
 
+# Daisy,Rose
+@onready var FlowerNodepath = ["MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/DaisyTheme","MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/RoseTheme","MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/TulipTheme"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,25 +14,29 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	
-	if (Game.flower1[0] > 0):
-		$MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/DaisyTheme.visible = true
-		if (Game.currentselecttheme == 0):
-			$MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/DaisyTheme.theme = Selected
+	# if (Game.flower1[0] > 0):
+	# 	get_node(FlowerNodepath[0]).visible = true
+	# else:
+	# 	get_node(FlowerNodepath[0]).visible = false
+
+	# if (Game.flower2[0] > 0):
+	# 	get_node(FlowerNodepath[1]).visible = true
+	# else:
+	# 	get_node(FlowerNodepath[1]).visible = false
+
+	for i in range(FlowerNodepath.size()):
+
+		if (Game["flower" + str(i + 1) ][0] > 0):
+				get_node(FlowerNodepath[i]).visible = true
 		else:
-			$MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/DaisyTheme.theme = Unselected
-	else:
-		$MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/DaisyTheme.visible = false
+				get_node(FlowerNodepath[i]).visible = false
 
-	if (Game.flower2[0] > 0):
-		$MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/RoseTheme.visible = true
-		if (Game.currentselecttheme == 1):
-			$MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/RoseTheme.theme = Selected
+	for i in range(FlowerNodepath.size()):
+		if (Game.currentselecttheme == i):
+			get_node(FlowerNodepath[i]).theme = Selected
 		else:
-			$MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/RoseTheme.theme = Unselected
-	else:
-		$MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/RoseTheme.visible = false
-
-
+			get_node(FlowerNodepath[i]).theme = Unselected
+			
 
 func _on_daisy_theme_pressed():
 	Game.changetheme(0)
@@ -39,3 +45,8 @@ func _on_daisy_theme_pressed():
 func _on_rose_theme_pressed():
 	Game.changetheme(1)
 
+
+
+func _on_tulip_theme_pressed():
+	Game.changetheme(2)
+	

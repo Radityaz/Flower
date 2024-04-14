@@ -1,5 +1,11 @@
 extends Control
 
+# HomeDisplay,ShopDisplay,FlowerDisplay
+@onready var NodePage = ["MarginContainer/VBoxContainer/HomeDisplay","MarginContainer/VBoxContainer/ShopDisplay","MarginContainer/VBoxContainer/FlowerDisplay"]
+@onready var PopUpPage = ["CostumizeDisplay"] 
+
+@onready var NodePageSelected = [true,false,false]
+@onready var PopUpPageSelected = [false]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,20 +20,20 @@ func _on_main_bubble_pressed():
 	Game.bubble += Game.upgrade1[1];
 
 
+func currentpage(Parameter):
+
+	NodePageSelected = Parameter
+
+	for i in range(0,NodePageSelected.size(),1):
+		get_node(NodePage[i]).visible = NodePageSelected[i]
+
 
 func _on_home_button_pressed():
-	$MarginContainer/VBoxContainer/HomeDisplay.visible = true
-	$MarginContainer/VBoxContainer/ShopDisplay.visible = false
-	$MarginContainer/VBoxContainer/FlowerDisplay.visible = false
-
-	
+	currentpage([true,false,false])
 
 
 func _on_shop_button_pressed():
-	$MarginContainer/VBoxContainer/HomeDisplay.visible = false
-	$MarginContainer/VBoxContainer/ShopDisplay.visible = true
-	$MarginContainer/VBoxContainer/FlowerDisplay.visible = false
-	
+	currentpage([false,true,false])
 
 
 func _on_timer_timeout():
@@ -35,9 +41,8 @@ func _on_timer_timeout():
 
 
 func _on_shop_button_2_pressed():
-	$MarginContainer/VBoxContainer/HomeDisplay.visible = false
-	$MarginContainer/VBoxContainer/ShopDisplay.visible = false
-	$MarginContainer/VBoxContainer/FlowerDisplay.visible = true
+	currentpage([false,false,true])
+
 
 
 func _on_costume_button_pressed():
