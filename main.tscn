@@ -400,6 +400,10 @@ theme_override_font_sizes/font_size = 12
 text = "1234"
 vertical_alignment = 1
 
+[node name="UpgradeLoop" type="Timer" parent="MarginContainer/VBoxContainer/ShopDisplay"]
+process_callback = 0
+wait_time = 0.1
+
 [node name="FlowerDisplay" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -456,7 +460,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = -4
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="FlowerLabel1" type="Label" parent="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.996078, 0.321569, 0.482353, 1)
 theme_override_colors/font_outline_color = Color(0.996094, 0.320313, 0.480469, 1)
@@ -779,6 +783,10 @@ max_value = 300.0
 step = 1.0
 show_percentage = false
 
+[node name="UpgradeLoop" type="Timer" parent="MarginContainer/VBoxContainer/FlowerDisplay"]
+process_callback = 0
+wait_time = 0.1
+
 [node name="BottomNavigation" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 5
@@ -869,6 +877,7 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="CostumizeDisplay" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1063,11 +1072,23 @@ autostart = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HomeDisplay/Panel/MainBubble" to="." method="_on_main_bubble_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HomeDisplay/HBoxContainer/MarginContainer/CostumeButton" to="." method="_on_costume_button_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1Cost" to="MarginContainer/VBoxContainer/ShopDisplay" method="_on_upgrade_1_cost_button_down"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1Cost" to="MarginContainer/VBoxContainer/ShopDisplay" method="_on_upgrade_1_cost_button_up"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/GoodQualityWater/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1Cost" to="MarginContainer/VBoxContainer/ShopDisplay" method="_on_upgrade_1_cost_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/BetterSpotLight/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2Cost" to="MarginContainer/VBoxContainer/ShopDisplay" method="_on_upgrade_2_cost_button_down"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/BetterSpotLight/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2Cost" to="MarginContainer/VBoxContainer/ShopDisplay" method="_on_upgrade_2_cost_button_up"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ShopDisplay/MarginContainer/VBoxContainer/BetterSpotLight/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2Cost" to="MarginContainer/VBoxContainer/ShopDisplay" method="_on_upgrade_2_cost_pressed"]
+[connection signal="timeout" from="MarginContainer/VBoxContainer/ShopDisplay/UpgradeLoop" to="MarginContainer/VBoxContainer/ShopDisplay" method="_on_upgrade_loop_timeout"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_1_button_down"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_1_button_up"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade1" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_1_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_2_button_down"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_2_button_up"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade2" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_2_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_3_button_down"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_3_button_up"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/FlowerDisplay/MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/MarginContainer2/Upgrade3" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_3_pressed"]
+[connection signal="timeout" from="MarginContainer/VBoxContainer/FlowerDisplay/UpgradeLoop" to="MarginContainer/VBoxContainer/FlowerDisplay" method="_on_upgrade_loop_timeout"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomNavigation/HBoxContainer/ShopButton2" to="." method="_on_shop_button_2_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomNavigation/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BottomNavigation/HBoxContainer/ShopButton" to="." method="_on_shop_button_pressed"]

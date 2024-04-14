@@ -51,3 +51,4 @@ func _on_costume_button_pressed():
 
 func _on_button_pressed():
 	$CostumizeDisplay.visible = false
+

@@ -13,11 +13,25 @@ extends ScrollContainer
 							"MarginContainer/VBoxContainer/RoseFlower/FlowerGenerate2",
 							"MarginContainer/VBoxContainer/TulipFlower/FlowerGenerate3"]
 
+@onready var FlowerLabel = ["MarginContainer/VBoxContainer/DaisyFlower/MarginContainer/HBoxContainer/VBoxContainer/FlowerLabel1",
+							"MarginContainer/VBoxContainer/RoseFlower/MarginContainer/HBoxContainer/VBoxContainer/Label",
+							"MarginContainer/VBoxContainer/TulipFlower/MarginContainer/HBoxContainer/VBoxContainer/Label"]
+
+@onready var TimerIndex
+@onready var TimerRun;
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
 func _process(_delta):
+
+	get_node(FlowerLabel[0]).text = "Daisy Flower Lv " + str(Game.flower1[0])
+	get_node(FlowerLabel[1]).text = "Rose Flower Lv " + str(Game.flower2[0])
+	get_node(FlowerLabel[2]).text = "Tulip Flower Lv " + str(Game.flower3[0])
+
+
 	
 	for i in range(FlowerBuff.size()):
 		get_node(FlowerCost[i]).text = str(Game.convertnumber(floor(Game["flower" + str(i + 1)][2])))
@@ -27,6 +41,18 @@ func _process(_delta):
 		if (Game["flower" + str(i + 1)][0] > 0):
 			Game["flower" + str(i + 1)][5] += 1
 	
+
+		# if (Game.flower1[0] > 0):
+		# 	get_node(FlowerBuff[0]).visible = true
+		# else:
+		# 	get_node(FlowerBuff[0]).visible = false
+
+	for i in range(FlowerBuff.size()):
+		if (Game["flower" + str(i + 1)][0] > 0):
+			get_node(FlowerBuff[i]).visible = true
+		else:
+			get_node(FlowerBuff[i]).visible = false
+			
 	
 	if (Game.bubble > Game.flower1[2]):
 		get_node(FlowerBuff[0]).text = str(Game.flower1[1]) + " > " + str(Game.flower1[1] + Game.flower1[3]) + " x Bubble per click" 
@@ -97,5 +123,42 @@ func upgrade(UpgradeIndex):
 
 
 func _on_upgrade_3_pressed():
-		upgrade(Game.flower3)
+	upgrade(Game.flower3)
+
+
+func _on_upgrade_1_button_down():
+	$UpgradeLoop.start()
+	TimerRun = 0.1
+	TimerIndex = Game.flower1
+
+
+func _on_upgrade_2_button_down():
+	$UpgradeLoop.start()
+	TimerRun = 0.1
+	TimerIndex = Game.flower2
+
+
+func _on_upgrade_3_button_down():
+	$UpgradeLoop.start()
+	TimerRun = 0.1
+	TimerIndex = Game.flower3
+
+
+func _on_upgrade_loop_timeout():
+	$UpgradeLoop.set_wait_time(TimerRun)
+	upgrade(TimerIndex)
+	TimerRun -= 0.005
+
+
+func _on_upgrade_1_button_up():
+	TimerRun = 0.1
+	$UpgradeLoop.stop()
+
+func _on_upgrade_2_button_up():
+	TimerRun = 0.1
+	$UpgradeLoop.stop()
+
+func _on_upgrade_3_button_up():
+	TimerRun = 0.1
+	$UpgradeLoop.stop()
 
