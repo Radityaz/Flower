@@ -60,20 +60,20 @@ func _process(_delta):
 	SuperFertilizerCost.text = str(Game.convertnumber(floor(Game.upgrade3[2])))
 	
 	if (Game.bubble >= Game.upgrade1[2]):
-		GoodWaterBuff.text = str(Game.upgrade1[1]) + " > " + str(Game.upgrade1[1] + Game.upgrade1[3] ) + " Bubble per tap" 
+		GoodWaterBuff.text = str(Game.upgrade1[1]) + " > " + str((Game.upgrade1[1] + (Game.upgrade1[3] * Game.upgrade1[5]) )) + " Bubble per tap" 
 		GoodWaterButton.theme = UpgradeReady 
 	else:
 		GoodWaterButton.theme = UpgradeNotReady 
 
 		
 	if (Game.bubble >= Game.upgrade2[2]):
-		BetterSpotLightBuff.text = str(Game.upgrade2[1]) + " > " + str(Game.upgrade2[1] + Game.upgrade2[3] ) + " Bubble per second" 
+		BetterSpotLightBuff.text = str(Game.upgrade2[1]) + " > " + str(Game.upgrade2[1] + (Game.upgrade2[3] * Game.upgrade2[5]) ) + " Bubble per second" 
 		BetterSpotLightButton.theme = UpgradeReady 
 	else:
 		BetterSpotLightButton.theme = UpgradeNotReady 
 
 	if (Game.bubble >= Game.upgrade3[2]):
-		SuperFertilizerBuff.text = str(Game.upgrade3[1]) + " > " + str((Game.upgrade3[1] + Game.upgrade2[3]) ) + "% Boost Flower Production" 
+		SuperFertilizerBuff.text = str(Game.upgrade3[1]) + " > " + str((Game.upgrade3[1] + (Game.upgrade3[3] * Game.upgrade3[5])) ) + "% Boost Flower Production" 
 		SuperFertilizerButton.theme = UpgradeReady 
 	else:
 		SuperFertilizerButton.theme = UpgradeNotReady 
@@ -93,8 +93,14 @@ func upgrade(UpgradeIndex):
 	if (Game.bubble >= UpgradeIndex[2]):
 		Game.bubble -= UpgradeIndex[2];
 		UpgradeIndex[0] += 1
-		UpgradeIndex[1] += UpgradeIndex[3]
+		UpgradeIndex[1] += ( UpgradeIndex[3] * UpgradeIndex[5])
 		UpgradeIndex[2] += UpgradeIndex[2] * 0.10
+		if (UpgradeIndex[0] == Game.UpgradeStep[UpgradeIndex[4]] - 1):
+			UpgradeIndex[4] += 1
+			UpgradeIndex[5] += 0.25
+			UpgradeIndex[2] += UpgradeIndex[2] * 0.15
+
+			
 		
 
 

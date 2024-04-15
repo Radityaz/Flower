@@ -17,7 +17,7 @@ func _process(_delta):
 	pass
 
 func _on_main_bubble_pressed():
-	Game.bubble += Game.upgrade1[1];
+	Game.bubble +=  Game.click;
 
 
 func currentpage(Parameter):

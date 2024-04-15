@@ -53,7 +53,7 @@ func _process(_delta):
 		get_node(FlowerStep[i]).max_value = Game["flower" + str(i + 1)][4]
 
 		if (Game["flower" + str(i + 1)][0] > 0):
-			Game["flower" + str(i + 1)][5] += 1 + (Game.upgrade3[1] / 100)
+			Game["flower" + str(i + 1)][5] += 1 + ((Game.upgrade3[1] * Game.upgrade3[5]) / 100)
 	
 
 		# if (Game.flower1[0] > 0):
@@ -75,40 +75,40 @@ func _process(_delta):
 			
 	
 	if (Game.bubble > Game.flower1[2]):
-		get_node(FlowerBuff[0]).text = str(Game.flower1[1]) + " > " + str(Game.flower1[1] + Game.flower1[3]) + " x Bubble per click" 
+		get_node(FlowerBuff[0]).text = str(Game.flower1[1]) + " > " + str(Game.flower1[1] + (Game.flower1[3] * Game.flower1[7])) + " x Bubble per click" 
 	else:
 		get_node(FlowerBuff[0]).text = str(Game.flower1[1]) + "x Bubble per click"
 		
 	if (Game.bubble > Game.flower2[2]):
-		get_node(FlowerBuff[1]).text = str(Game.flower2[1]) + " > " + str(Game.flower2[1] + Game.flower2[3]) + " x Bubble per second" 
+		get_node(FlowerBuff[1]).text = str(Game.flower2[1]) + " > " + str(Game.flower2[1] + (Game.flower2[3] * Game.flower2[7] )) + " x Bubble per second" 
 	else:
 		get_node(FlowerBuff[1]).text = str(Game.flower2[1]) + "x Bubble per second"
 
 	if (Game.bubble > Game.flower3[2]):
-		get_node(FlowerBuff[2]).text = str(Game.flower3[1]) + " > " + str(Game.flower3[1] + Game.flower3[3]) + " x all upgrades" 
+		get_node(FlowerBuff[2]).text = str(Game.flower3[1]) + " > " + str(Game.flower3[1] + (Game.flower3[3] * Game.flower3[7] )) + " x all upgrades" 
 	else:
 		get_node(FlowerBuff[2]).text = str(Game.flower3[1]) + "x all upgrades"
 
 	if (Game.bubble > Game.flower4[2]):
-		get_node(FlowerBuff[3]).text = str(Game.flower4[1]) + " > " + str(Game.flower4[1] + Game.flower4[3]) + " x flower level" 
+		get_node(FlowerBuff[3]).text = str(Game.convertnumber(Game.flower4[1])) + " > " + str(Game.convertnumber(Game.flower4[1] + (Game.flower4[3] * Game.flower4[7]))) + " x flower level" 
 	else:
-		get_node(FlowerBuff[3]).text = str(Game.flower4[1]) + "x all flower level"
+		get_node(FlowerBuff[3]).text = str(Game.convertnumber(Game.flower4[1])) + "x all flower level"
 	
 	
 	if (Game.flower1[5] >= Game.flower1[4]):
-		Game.bubble += Game.flower1[1] * Game.upgrade1[1]
+		Game.bubble += ((Game.flower1[1] * Game.upgrade1[1]) * Game.flower1[7])
 		Game.flower1[5] = 0
 	
 	if (Game.flower2[5] >= Game.flower2[4]):
-		Game.bubble += Game.flower2[1] * Game.BPS
+		Game.bubble += ((Game.flower2[1] * Game.BPS) * Game.flower2[7])
 		Game.flower2[5] = 0
 
 	if (Game.flower3[5] >= Game.flower3[4]):
-		Game.bubble += Game.flower3[1] * (Game.BPS + Game.click)
+		Game.bubble += ((Game.flower3[1] * (Game.BPS + Game.click)) * Game.flower3[7])
 		Game.flower3[5] = 0
 
 	if (Game.flower4[5] >= Game.flower4[4]):
-		Game.bubble += Game.flower4[1] * (Game.flower1[0] + Game.flower2[0] + Game.flower3[0])
+		Game.bubble += ((Game.flower4[1] * (Game.flower1[0] + Game.flower2[0] + Game.flower3[0])) * Game.flower4[7])
 		Game.flower4[5] = 0
 	
 	if (Game.flower1[0] > 0):
@@ -142,8 +142,13 @@ func upgrade(UpgradeIndex):
 	if (Game.bubble >= UpgradeIndex[2]):
 		Game.bubble -= UpgradeIndex[2];
 		UpgradeIndex[0] += 1
-		UpgradeIndex[1] += UpgradeIndex[3]
+		UpgradeIndex[1] += (UpgradeIndex[3] * UpgradeIndex[7])
 		UpgradeIndex[2] += UpgradeIndex[2] * 0.25
+
+		if (UpgradeIndex[0] == Game.UpgradeStep[UpgradeIndex[6]] - 1):
+			UpgradeIndex[6] += 1
+			UpgradeIndex[7] += 0.25
+			UpgradeIndex[2] += UpgradeIndex[2] * 0.30
 		
 		if (UpgradeIndex[0] == 1 && UpgradeIndex == Game.flower1):
 			UpgradeIndex[1] += 10
