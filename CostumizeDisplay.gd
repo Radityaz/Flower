@@ -4,7 +4,10 @@ extends Panel
 @onready var Selected = load("res://theme/SecondaryTheme.tres")
 
 # Daisy,Rose
-@onready var FlowerNodepath = ["MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/DaisyTheme","MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/RoseTheme","MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/TulipTheme"]
+@onready var FlowerNodepath = ["MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/DaisyTheme"
+								,"MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/RoseTheme",
+								"MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/TulipTheme",
+								"MarginContainer/Panel/MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/GridContainer/OrchidTheme"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,3 +53,8 @@ func _on_rose_theme_pressed():
 func _on_tulip_theme_pressed():
 	Game.changetheme(2)
 	
+
+
+func _on_orchid_theme_pressed():
+	Game.changetheme(3)
+
